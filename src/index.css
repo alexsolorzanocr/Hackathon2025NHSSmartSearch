@@ -13,9 +13,48 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.nhs-container {
-  display: flex;
+body {
+  padding: 0px;
+  margin: 0px;
+  margin: 0 auto;
   background-image: url('./assets/nhs-baground.jpg');
-  width: 1900px;
-  height: 3750px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+header {
+  height: 56px;  
+  position: relative ;
+  background-color: #fff;
+}
+
+header .logo { 
+  padding: 10px 24px;  
+  position: absolute;
+  left: 0px;
+  width: 200px;
+} 
+
+header svg {
+  max-width: 90px;;
+}
+
+header .menu {  
+  position: absolute;
+  width: 30%;
+  right: 0px;
+  background-image: url('./assets/nhs-top-header.jpg');
+  background-repeat: no-repeat;
+  background-position: top right; ;
+}
+
+section {
+  background-image: url('https://beta-nhs-static-secure.akamaized.net/GlobalResources14/NewHomeSource/images/home-redesign/hero-images/2/hp_background_1920.jpg');
+  height: 532px;
+}
+
+h1, h2 {
+  font-family: 'ITC Souvenir Std';
+  font-size: 2.625rem;
 }

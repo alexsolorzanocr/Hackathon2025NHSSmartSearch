@@ -2,17 +2,428 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>New Homes | Search Home Builders and New Homes for Sale</title>
+    <link rel="shortcut icon" href=https://beta-nhs-static-secure.akamaized.net/GlobalResources14/NewHomeSource/images/favicon.ico>        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Lit</title>
-    <link rel="stylesheet" href="./src/index.css" />
+    <!--link rel="stylesheet" href="./src/index.css" /-->
     <script type="module" src="/src/nhs-search-box.js"></script>
+    <style>
+        @font-face {
+            font-display: swap;
+            font-family: "Circular XX";
+            src: url('https://beta-nhs-static-secure.akamaized.net/wwwroot/fonts/CircularXX-variable.woff2') format('woff2');
+            font-weight: 400 700;
+            unicode-range: U+0020-007E,U+00A0-00A1,U+00A7,U+00A9-00AC,U+00AE,U+00B4,U+00BB,U+00BF-00C2,U+00C4,U+00C6-00CF,U+00D1-00D4,U+00D6,U+00D9-00DC,U+00E0-00E2,U+00E4,U+00E6-00EF,U+00F1-00F4,U+00F6,U+00F9-00FC,U+00FF,U+0152-0153,U+0178,U+02C6,U+02DA,U+02DC,U+2013-2014,U+2018-201A,U+201C-201E,U+2020-2022,U+2026,U+2030,U+20AC,U+2122,U+2212,U+2215
+        }
+
+        @font-face {
+            font-display: swap;
+            font-family: 'ITC Souvenir Std';
+            src: url('https://beta-nhs-static-secure.akamaized.net/wwwroot/fonts/SouvenirStd-Light.woff2') format('woff2');
+            font-weight: 300;
+            unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Circular XX', Arial, sans-serif; 
+            line-height: 1.6;
+            background-color: #f4f7f6; 
+            color: #333;
+            padding-top: 56px; 
+        }
+
+        
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background-color: #ffffff; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px; 
+            z-index: 1000; 
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-svg {
+            width: 90px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a {
+            color: #333; 
+            text-decoration: none;
+            margin-left: 25px; 
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+
+        .menu a:hover, .menu a:focus {
+            background-color: #e9ecef; 
+            color: #007bff; 
+        }
+
+        .user-icon-link {
+            margin-left: 30px; 
+            padding: 8px;
+        }
+
+        .user-icon {
+            font-size: 1.3em; 
+            color: #555; 
+            transition: color 0.2s ease;
+        }
+
+        .user-icon-link:hover .user-icon,
+        .user-icon-link:focus .user-icon {
+            color: #007bff;
+        }
+
+        .input-wrapper {
+          position: relative;
+          display: inline-block;
+        }
+
+        .icon {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+          font-size: 14px;
+          color: #888;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            
+            height: 530px;
+            background-image: url('./src/assets/hero-background.jpg'); 
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px; 
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between; 
+            align-items: flex-start; 
+            gap: 25px; 
+        }
+
+        .hero-left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; 
+            flex: 2;
+        }
+
+        .hero-box {
+            background-color: rgba(30,29,33,.7); 
+            color: #333; 
+            border-radius: 12px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+            padding: 1rem;
+            width: 100%; 
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-title {
+            font-family: ITC Souvenir Std, Times, serif, system-ui;            
+            font-size: 2.4rem;
+            font-weight: 300;
+            max-width: none;
+            width: 80%;
+            margin-bottom: 20px;            
+            color: #fff; 
+        }
+
+        .hero-subtitle {
+          color: #fff;
+          font-family: 'Circular XX', Arial, Helvetica, sans-serif, system-ui;
+          font-size: 1rem;
+          font-style: normal;
+          line-height: 1.5rem;
+          margin-bottom: 15px;
+         }
+
+        .hero-paragraph {
+            font-weight: 500;
+            font-size: 1.125rem;
+            color: #1e1d21;
+        }
+
+
+
+        .search-box-container{
+          align-self: flex-start;
+        } 
+        
+        .message-box-container {
+          background-color: #B8EAC3;
+          align-self: flex-end;
+        } 
+
+        .message-box-container h3 {
+          font-family: 'ITC Souvenir Std';
+          color: #1e1d21;
+          font-family: ITC Souvenir Std, Times, serif, system-ui;
+          font-size: 2rem;
+          font-style: normal;
+          font-weight: 300;
+          line-height: 2.75rem;
+        }
+
+        .search-form {
+            display: flex;
+            flex-direction: column; 
+            gap: 15px; 
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            padding-left: 30px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .search-button {
+            background-color: #a7d5d9; 
+            color: #1e1d21;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            font-size: .875rem;
+            height: 2.5rem;
+            line-height: 1.125rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-button:active {
+            transform: scale(0.98);
+        }
+
+        .counters-box-container .columns-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: auto; 
+        }
+
+        .counters-box-container .column {
+            flex: 1;
+            text-align: center;
+        }
+
+        .counters-box-container .column h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #0056b3;
+        }
+
+        .counters-box-container .column-data {
+            font-family: Circular XX, Arial, Helvetica, sans-serif, system-ui;
+            font-size: 1.5rem;
+            font-style: normal;
+            line-height: 2rem;
+            color: #a7d5d9;
+            font-weight: 400;
+        }
+
+        .counters-box-container .column-description {
+          font-size: .75rem;
+          font-style: normal;
+          font-weight: 450;
+          line-height: 1rem;
+          color: #fff;
+        }
+
+
+        .image-section {
+            min-height: calc(3750px - 56px - 530px);
+            background-image: url('./src/assets/nhs-baground.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+        @media (max-width: 2000px) {
+            .hero-container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .hero-left-column { 
+                width: 50%;
+                max-width: 650px;
+                flex-basis: auto; 
+                flex: none; 
+            }
+
+             .message-box-container {
+                width: 395px; 
+                height: 175px;
+            }
+        }
+
+        @media (max-width: 992px) {
+          
+            .hero-left-column {
+                width: 90%;
+                flex-basis: auto; 
+                flex: none; 
+            }
+
+            .image-section {
+              min-height: 1000px;
+              background-size: 100% 100%; 
+            }
+            
+            .hero-title {
+              font-size: 2.1rem;
+              width: 100%;
+            }
+
+
+            .message-box-container {
+              display: none;
+            }
+
+            .hero-section {
+                height: auto; 
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+            .hero-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .hero-box {
+                width: 90%;
+                max-width: 650px; 
+                flex-basis: auto;
+            }
+        }
+    </style>
   </head>
   <body>
-    <div class="nhs-container">
-      <nhs-search-box>
-        <h1>Vite + Lit</h1>
-      </nhs-search-box>
-    </div>
-  </body>
+    <header class="fixed-header">
+        <div class="logo-container">
+            <a href="https://www.newhomesource.com">
+              <svg xmlns="http://www.w3.org/2000/svg" class="logo-svg" preserveAspectRatio="xMidYMin meet" viewBox="0 0 530 179"><title>New Home Source</title><mask id="a" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0"><path d="M530 0H0v178.774h530V0Z" fill="#fff"></path></mask><g mask="url(#a)" fill="#1E1D21"><path d="m427.473 170.707-5.55-9.743c-5.222 4.477-10.624 6.157-16.737 6.069-5.075-.078-9.023-1.322-12.178-4.016l.196-.187s.03-.014.039-.014a119.39 119.39 0 0 0 12.623-7.353 100.465 100.465 0 0 0 4.997-3.585 84.979 84.979 0 0 0 6.225-5.232c5.173-4.824 7.588-10.124 7.177-15.753-.299-4.183-2.631-7.832-6.305-10.394-3.012-2.106-6.936-3.478-11.383-3.811a29.753 29.753 0 0 0-2.185-.083c-.26 0-.524 0-.779.01-11.78.357-20.49 5.368-25.868 14.881-3.081 5.437-4.438 11.462-4.085 18.28v.044c.108 2.131.387 4.34.828 6.633l.245 1.273c.083.451.127.706.127.711l.024.132-.117.064c-4.374 2.297-8.474 4.31-14.352 5.701a7.5 7.5 0 0 1-.358.084c-2.856.602-4.888.965-8.969.965-5.074 0-9.375-1.734-12.789-5.158-3.356-3.459-5.055-7.823-5.055-12.971s1.699-9.562 5.045-13.015c3.424-3.424 7.729-5.158 12.799-5.158 5.526 0 10.297 1.959 14.186 5.819l5.692-12.05c-5.589-4.482-12.276-6.755-19.878-6.755-8.846 0-16.512 3.028-22.787 8.999-6.123 5.863-9.228 13.318-9.228 22.16 0 8.841 3.105 16.419 9.228 22.282 6.172 5.898 13.833 8.886 22.787 8.886 4.943 0 9.513-.666 14.377-2.102 4.516-1.332 9.463-3.389 15.577-6.48l.039-.02h.127l.064.059c1.807 1.915 3.727 3.39 5.878 4.507 1.21.627 2.434 1.19 3.674 1.68 4.036 1.724 8.616 2.63 13.739 2.704 4.884.073 9.395-.711 13.535-2.347h.009c3.752-1.259 7.015-2.968 9.714-5.094l-.333-.622h-.015Zm-36.919-19.138c-.632.353-1.269.706-1.915 1.063-.074.039-.132.064-.181.093l-.211.123-.059-.24c-.01-.03-.01-.054-.01-.079v-.044l-.034-.333-.059-.622c-.156-1.739-.289-3.605-.034-5.06v-.083c.103-1.612.304-3.116.612-4.521.627-2.866 1.69-5.33 3.243-7.485a19.38 19.38 0 0 1 2.92-3.223c2.537-2.258 5.246-3.356 8.283-3.356h.264c.211 0 .436.01.71.04.299.024.696.058 1.107.122 2.053.323 3.429 1.024 4.149 2.126.485.745.671 1.67.569 2.782-.255 2.743-1.676 5.344-4.458 8.18-.353.358-.705.706-1.073 1.049-3.899 3.673-8.596 6.539-13.828 9.463l.005.005ZM449.07 157.663c0 5.275-4.046 9.253-9.41 9.253-5.363 0-9.277-3.978-9.277-9.253 0-5.276 3.987-9.253 9.277-9.253 5.29 0 9.41 3.977 9.41 9.253ZM14.215 81.792H0V0h12.897l43.331 56.801V0h14.156v81.792H58.462L14.215 23.9v57.893ZM78.83 52.677v-.46c0-9.288 2.904-16.831 8.713-22.64 5.849-5.732 13.28-8.598 22.297-8.598 9.018 0 15.651 2.866 21.034 8.597 5.462 5.692 8.195 12.76 8.195 21.205 0 1.224-.079 2.865-.23 4.928H92.814c.23 4.702 1.96 8.464 5.187 11.29 3.228 2.827 7.441 4.242 12.638 4.242 6.113 0 11.442-2.273 15.993-6.818l8.425 8.195c-6.725 7.068-15.018 10.605-24.874 10.605-9.287 0-16.83-2.787-22.64-8.367-5.81-5.579-8.714-12.975-8.714-22.18Zm14.327-6.824h31.579c0-3.478-1.489-6.475-4.472-8.998-2.944-2.596-6.422-3.9-10.433-3.9-4.355 0-8.141 1.26-11.35 3.782-3.208 2.523-4.986 5.56-5.33 9.116h.006ZM244.339 81.792h-14.675V0h14.675v31.927h39.319V0h14.558v81.792h-14.558V45.168h-39.319v36.624ZM316.119 74.513c-6.265-5.96-9.4-13.392-9.4-22.297 0-8.905 3.135-16.336 9.4-22.297 6.343-6.035 13.985-9.057 22.929-9.057 8.945 0 16.527 3.017 22.871 9.057 6.265 5.961 9.4 13.392 9.4 22.297 0 8.905-3.135 16.336-9.4 22.297-6.344 6.04-13.966 9.057-22.871 9.057s-16.586-3.017-22.929-9.057Zm22.924-3.781c5.158 0 9.493-1.759 13.01-5.276 3.517-3.63 5.276-8.043 5.276-13.24 0-5.197-1.759-9.61-5.276-13.127-3.517-3.63-7.852-5.447-13.01-5.447-5.158 0-9.669 1.817-13.181 5.447-3.439 3.556-5.158 7.93-5.158 13.127 0 5.197 1.719 9.572 5.158 13.24 3.517 3.517 7.911 5.276 13.181 5.276ZM390.873 81.792h-13.926V22.64h13.926v8.425c1.259-2.905 3.296-5.236 6.103-6.995 2.807-1.758 6.064-2.635 9.772-2.635 8.215 0 13.774 3.458 16.679 10.375 3.36-6.917 9.689-10.375 18.971-10.375 6.344 0 11.301 2.111 14.877 6.334 3.571 4.222 5.358 10.022 5.358 17.394V63.85c0 2.331.275 3.948.833 4.844.554.897 1.597 1.347 3.125 1.347.573 0 1.24-.078 2.009-.23v11.864c-1.416.46-3.439.686-6.074.686-9.248 0-13.872-5.158-13.872-15.474V47.17c0-4.09-.907-7.308-2.724-9.66-1.817-2.35-4.345-3.526-7.592-3.526-3.248 0-6.011 1.298-8.166 3.899-2.16 2.6-3.238 5.883-3.238 9.86v34.048H412.95V47.171c0-4.09-.926-7.308-2.783-9.66-1.851-2.35-4.442-3.526-7.768-3.526-3.326 0-6.03 1.298-8.225 3.899-2.199 2.6-3.296 5.883-3.296 9.86v34.048h-.005ZM469.76 52.677v-.46c0-9.288 2.905-16.831 8.714-22.64 5.849-5.732 13.28-8.598 22.298-8.598 9.017 0 15.65 2.866 21.033 8.597 5.462 5.692 8.195 12.76 8.195 21.205 0 1.224-.078 2.865-.23 4.928h-46.025c.23 4.702 1.959 8.464 5.187 11.29 3.228 2.827 7.441 4.242 12.638 4.242 6.113 0 11.443-2.273 15.993-6.818l8.425 8.195c-6.725 7.068-15.018 10.605-24.873 10.605-9.288 0-16.831-2.787-22.641-8.367-5.809-5.579-8.714-12.975-8.714-22.18Zm14.328-6.824h31.579c0-3.478-1.489-6.475-4.472-8.998-2.944-2.596-6.421-3.9-10.433-3.9-4.355 0-8.141 1.26-11.35 3.782-3.208 2.523-4.986 5.56-5.329 9.116h.005ZM86.44 159.74l11.061-6.936c4.242 8.292 11.08 12.436 20.52 12.436 4.736 0 8.234-1.033 10.487-3.095 2.253-2.063 3.38-4.585 3.38-7.568 0-3.517-1.568-6.304-4.703-8.367-1.606-1.107-3.179-2.023-4.727-2.752-1.547-.725-3.962-1.681-7.249-2.866-3.973-1.489-7.166-2.856-9.571-4.1-2.406-1.239-4.737-2.763-6.995-4.555-4.624-3.821-6.936-9.19-6.936-16.106 0-6.495 2.424-11.825 7.279-15.993 4.854-4.051 10.889-6.074 18.114-6.074 11.197 0 19.603 4.413 25.221 13.24l-10.433 7.166c-3.174-4.854-8.024-7.279-14.558-7.279-3.248 0-5.922.823-8.024 2.464-2.101 1.646-3.154 3.728-3.154 6.251 0 1.567.264 2.836.803 3.811.534.974 1.396 2.052 2.582 3.237.382.27.955.593 1.719.975.764.382 1.611.803 2.552 1.259.936.46 1.558.764 1.861.916l4.242 1.66 4.815 1.891c7.603 3.096 13.143 6.495 16.62 10.203 3.478 3.709 5.217 8.597 5.217 14.676 0 7.377-2.483 13.25-7.45 17.624-4.967 4.374-12.035 6.564-21.21 6.564-7.49 0-13.955-1.641-19.402-4.928-5.447-3.287-9.469-7.871-12.065-13.754h.005ZM159.421 169.713c-6.265-5.962-9.4-13.392-9.4-22.297 0-8.906 3.135-16.336 9.4-22.298 6.344-6.034 13.985-9.057 22.93-9.057 8.944 0 16.526 3.018 22.87 9.057 6.265 5.962 9.4 13.392 9.4 22.298 0 8.905-3.135 16.335-9.4 22.297-6.344 6.039-13.965 9.057-22.87 9.057-8.906 0-16.586-3.018-22.93-9.057Zm22.93-3.782c5.157 0 9.492-1.758 13.009-5.275 3.517-3.63 5.276-8.043 5.276-13.24 0-5.198-1.759-9.611-5.276-13.128-3.517-3.63-7.852-5.447-13.009-5.447-5.158 0-9.67 1.817-13.182 5.447-3.439 3.556-5.158 7.93-5.158 13.128 0 5.197 1.719 9.571 5.158 13.24 3.517 3.517 7.911 5.275 13.182 5.275ZM219.509 154.464v-36.625h14.103v34.622c0 4.09 1.048 7.298 3.154 9.63 2.101 2.332 5.045 3.497 8.827 3.497 3.781 0 6.877-1.278 9.287-3.84 2.405-2.562 3.61-5.849 3.61-9.86v-34.049h14.103v41.21c0 2.484.323 4.232.974 5.246.652 1.014 1.778 1.519 3.38 1.519.573 0 1.548-.079 2.924-.231v11.521c-1.64.613-3.952.916-6.936.916-3.517 0-6.402-.783-8.655-2.351-2.292-1.832-3.708-3.899-4.242-6.191-3.399 5.77-9.4 8.655-17.996 8.655-7.029 0-12.545-2.111-16.537-6.334-3.992-4.222-5.991-10.002-5.991-17.34l-.005.005ZM297.99 176.992h-13.926v-59.153h13.926v8.768c1.416-3.135 3.669-5.579 6.765-7.337 3.096-1.759 6.706-2.636 10.835-2.636 1.68 0 3.096.113 4.242.343v13.642a30.962 30.962 0 0 0-5.848-.573c-4.894 0-8.778 1.425-11.663 4.271-2.886 2.846-4.326 6.696-4.326 11.551v31.124h-.005ZM223.976 22.64l-19.892 59.152h-10.889l-8.391-25.72-3.82-11.708-12.021 37.428h-9.537l-12.427-31.035-1.386-3.41a61.65 61.65 0 0 1-3.929-13.088c-.783-4.276-.637-8.136.064-11.619h13.436c-.867 4.325-.485 9.111.99 14.587.617 2.307 1.435 4.747 2.429 7.318l2.704 8.039 2.312 6.911.01-.02L175.6 22.64h10.659l5.535 17.022 6.446 19.833 12.325-36.855h13.411Z"></path></g></svg>
+            </a>
+        </div>
+        <nav class="menu">
+            <a href="#">Find a home</a>
+            <a href="#">Advertise</a>
+            <a href="#">Resources</a>
+            <a href="#" aria-label="Cuenta de usuario" class="user-icon-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                  <circle cx="16" cy="16" r="16" fill="#999999"/>
+                  <path d="M16 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 10c4.418 0 8 2.239 8 5v1H8v-1c0-2.761 3.582-5 8-5z" fill="#ffffff"/>
+                </svg>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-left-column">
+                    <div class="hero-box search-box-container">
+                        <h2 class="hero-title">The smartest way to buy a new home</h2>
+                        <div class="search-form">
+                          <div class="input-wrapper">
+                              <i class="fas fa-search icon"></i>
+                              <input type="text" placeholder="Enter location or community name" class="search-input">
+                            </div>
+                            <button class="search-button">
+                                Find a new home
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-box counters-box-container">
+                        <h3 class="hero-subtitle">Find homes nationwide</h3>
+                        <div class="columns-container">
+                            <div class="column">
+                                <p class="column-data">184000</p>
+                                <p class="column-description">New homes for sale</p>
+                            </div>
+                            <div class="column">
+                                <p class="column-data">66000</p>
+                                <p class="column-description">Quick move-in homes</p>
+                            </div>
+                            <div class="column">
+                                <p class="column-data">28000</p>
+                                <p class="column-description">New home communities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-box message-box-container">
+                    <h3 class="hero-subtitle">Find, design & buy your new home online</h3>
+                    <p class="hero-paragraph">Getting out of bed is optional.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="image-section"></section>
+    </main>
+
+</body>
 </html>
