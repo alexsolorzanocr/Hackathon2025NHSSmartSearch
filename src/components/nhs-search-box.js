@@ -130,7 +130,7 @@ export class MyElement extends LitElement {
               <span class="icon-sufix" title="Smart AI search" @click=${this.toggleSmartSearch}>${ai}</span>
             </div>` :
             html`<div class="input-ai-wrapper">
-              <span class="icon-prefix-top" @click=${this.toggleNormalSearch}>${back}</span>
+              <span class="icon-prefix-top" title="Back to normal Search" @click=${this.toggleNormalSearch}>${back}</span>
               <textarea id="nhs-search-ai-text-box" rows="4" type="text" placeholder="${this.placeholder}" class="search-input"></textarea>
               <span class="icon-sufix-bottom" title="Search with voice" @click=${this.toggleSmartSearch}>${mic}</span>
             </div>`}
@@ -146,7 +146,7 @@ export class MyElement extends LitElement {
         });
       });
   }
-  
+
   toggleNormalSearch() {
     this.isAiSearch = false;
   }
