@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Circular XX', Arial, sans-serif; 
+    line-height: 1.6;
+    background-color: #f4f7f6; 
+    color: #333;
+    padding-top: 56px; 
+}
+
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #ffffff; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px; 
+    z-index: 1000; 
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-svg {
+    width: 90px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu a {
+    color: #333; 
+    text-decoration: none;
+    margin-left: 25px; 
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+
+.menu a:hover, .menu a:focus {
+    background-color: #e9ecef; 
+    color: #007bff; 
+}
+
+.user-icon-link {
+    margin-left: 30px; 
+    padding: 8px;
+}
+
+.user-icon {
+    font-size: 1.3em; 
+    color: #555; 
+    transition: color 0.2s ease;
+}
+
+.user-icon-link:hover .user-icon,
+.user-icon-link:focus .user-icon {
+    color: #007bff;
+}
+
+
+/* Hero Section */
+.hero-section {
+    
+    height: 530px;
+    background-image: url('./src/assets/hero-background.jpg'); 
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px; 
+}
+
+.hero-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    gap: 25px; 
+}
+
+.hero-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; 
+    flex: 2;
+}
+
+.hero-box {
+    background-color: rgba(30,29,33,.7); 
+    color: #333; 
+    border-radius: 12px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+    padding: 1rem;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hero-title {
+    font-family: ITC Souvenir Std, Times, serif, system-ui;            
+    font-size: 2.4rem;
+    font-weight: 300;
+    max-width: none;
+    margin-bottom: 20px;            
+    color: #fff; 
+}
+
+.hero-subtitle {
+    color: #fff;
+    font-family: 'Circular XX', Arial, Helvetica, sans-serif, system-ui;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.5rem;
+    margin-bottom: 15px;
+    }
+
+.hero-paragraph {
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: #1e1d21;
+}
+
+
+
+.search-box-container{
+    align-self: flex-start;
+} 
+
+.message-box-container {
+    background-color: #B8EAC3;
+    align-self: flex-end;
+} 
+
+.message-box-container h3 {
+    font-family: 'ITC Souvenir Std';
+    color: #1e1d21;
+    font-family: ITC Souvenir Std, Times, serif, system-ui;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 2.75rem;
+}
+
+.counters-box-container .columns-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: auto; 
+}
+
+.counters-box-container .column {
+    flex: 1;
+    text-align: center;
+}
+
+.counters-box-container .column h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #0056b3;
+}
+
+.counters-box-container .column-data {
+    font-family: Circular XX, Arial, Helvetica, sans-serif, system-ui;
+    font-size: 1.5rem;
+    font-style: normal;
+    line-height: 2rem;
+    color: #a7d5d9;
+    font-weight: 400;
+}
+
+.counters-box-container .column-description {
+    font-size: .75rem;
+    font-style: normal;
+    font-weight: 450;
+    line-height: 1rem;
+    color: #fff;
+}
+
+
+.image-section {
+    min-height: calc(3750px - 56px - 530px);
+    background-image: url('./src/assets/nhs-baground.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+@media (max-width: 2000px) {
+    .hero-container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-left-column { 
+        width: 425px;
+        flex-basis: auto; 
+        flex: none; 
+    }
+
+        .message-box-container {
+        width: 395px; 
+        height: 175px;
+    }
+}
+
+@media (max-width: 992px) {
+    
+    .hero-left-column {
+        width: 90%;
+        flex-basis: auto; 
+        flex: none; 
+    }
+
+    .image-section {
+        min-height: 1000px;
+        background-size: 100% 100%; 
+    }
+    
+    .hero-title {
+        font-size: 2.1rem;
+        width: 100%;
+    }
+
+
+    .message-box-container {
+        display: none;
+    }
+
+    .hero-section {
+        height: auto; 
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .hero-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .hero-box {
+        width: 90%;
+        max-width: 650px; 
+        flex-basis: auto;
+    }
+}
