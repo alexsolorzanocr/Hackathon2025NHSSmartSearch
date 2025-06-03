@@ -113,7 +113,7 @@
     `}constructor(){super(),this.docsHint="Click on the Vite and Lit logos to learn more",this.count=0}render(){return j`
       <div class="search-form">
         ${this.isAiSearch?j`<div class="input-ai-wrapper">
-              <span class="icon-prefix-top" @click=${this.toggleNormalSearch}>${Ut}</span>
+              <span class="icon-prefix-top" title="Back to normal Search" @click=${this.toggleNormalSearch}>${Ut}</span>
               <textarea id="nhs-search-ai-text-box" rows="4" type="text" placeholder="${this.placeholder}" class="search-input"></textarea>
               <span class="icon-sufix-bottom" title="Search with voice" @click=${this.toggleSmartSearch}>${Ot}</span>
             </div>`:j`<div class="input-normal-wrapper">
